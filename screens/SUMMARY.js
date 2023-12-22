@@ -3,7 +3,7 @@ import { Image } from "expo-image";
 import { StyleSheet, Pressable, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import { Color, Border, FontSize, FontFamily } from "../GlobalStyles";
+import { Color, Border, FontSize } from "../GlobalStyles";
 
 const SUMMARY = () => {
   const navigation = useNavigation();

@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, View, Pressable, Text, Touchable, TouchableOpacit
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import { Border, FontFamily, FontSize, Color } from "../GlobalStyles";
+import { Border, FontSize, Color } from "../GlobalStyles";
 
 const TIME = () => {
   const navigation = useNavigation();

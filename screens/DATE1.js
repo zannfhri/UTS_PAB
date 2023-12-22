@@ -2,8 +2,8 @@ import { Image } from "expo-image";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
-import {Calendar, LocaleConfig} from 'react-native-calendars';
+import { Color, Border, FontSize } from "../GlobalStyles";
+import {Calendar} from 'react-native-calendars';
 import React, { useState } from 'react';
 
 const DATE1 = () => {
