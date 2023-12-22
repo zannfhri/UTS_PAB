@@ -7,7 +7,6 @@ import TIME from "./screens/TIME";
 import SUMMARY from "./screens/SUMMARY";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, Pressable, TouchableOpacity } from "react-native";
 
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(true);

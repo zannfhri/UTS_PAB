@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, View, Pressable, Text, Touchable, TouchableOpacity } from "react-native";
+import { FlatList, StyleSheet, View, Pressable, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
