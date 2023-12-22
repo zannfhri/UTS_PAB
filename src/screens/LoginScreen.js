@@ -20,6 +20,11 @@ const handleLogin = () => {
       Alert.alert('Error', 'Isi nama pengguna dengan benar', [{ text: 'OK' }]);
       return;
    }
+    // Panggil API login disini menggunakan informasi pengguna yang diisi
+   Alert.alert('Login Berhasil', 'Selamat datang di aplikasi AmHealth', [{ text: 'OK' }]);
+   
+   // Pindah ke halaman OTP setelah login berhasil
+   navigation.navigate('Notification');
 };
 
 const handleSignUp = () => {
@@ -41,7 +46,7 @@ return (
       style={styles.input}
       onChangeText={text => setPassword(text)}
       value={password}
-      placeholder="Masukkan kata-sandi Anda"
+      placeholder="Masukkan kata sandi Anda"
       secureTextEntry
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
