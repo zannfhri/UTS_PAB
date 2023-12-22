@@ -41,7 +41,7 @@ return (
       style={styles.input}
       onChangeText={text => setPassword(text)}
       value={password}
-      placeholder="Masukkan kata sandi Anda"
+      placeholder="Masukkan kata-sandi Anda"
       secureTextEntry
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>

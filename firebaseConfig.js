@@ -15,7 +15,7 @@ const firebaseConfig = {
     storageBucket: "project-biasa-92193.appspot.com",
     messagingSenderId: "1038954390112",
     appId: "1:1038954390112:web:7c4498412b15b3e502d905"
-  };
+};
 
 const app = initializeApp(firebaseConfig);
 // For more information on how to access Firebase in your project,

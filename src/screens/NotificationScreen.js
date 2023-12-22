@@ -1,103 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const NotificationScreen = (props) => {
- const [notifications, setNotifications] = useState([]);
- const [markedAsRead, setMarkedAsRead] = useState(false);
+const LoginScreen = (props) => {
+   const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+   const isValidEmail = (email) => {
+      const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return re.test(String(email).toLowerCase());
+   };
+   const navigation = useNavigation();
 
- useEffect(() => {
-    // Anda bisa menggantikan data di bawah ini dengan data asli Anda
-    const data = [
-      { id: '1', title: 'Appointment Success', time: '2h', isRead: false },
-      { id: '2', title: 'Schedule Changed', time: '3h', isRead: false },
-      { id: '3', title: 'Appointment Cancelled', time: '1d', isRead: false },
-      { id: '4', title: 'New Paypal Added', time: '2h', isRead: false },
-      { id: '5', title: 'Video Call Appointment', time: '3h', isRead: false },
-    ];
+const handleLogin = () => {
+   if (!email || !password) {
+      Alert.alert('Error', 'Please fill all fields', [{ text: 'OK' }]);
+      return;
+   }
+   if (!isValidEmail(email)) {
+      Alert.alert('Error', 'Isi nama pengguna dengan benar', [{ text: 'OK' }]);
+      return;
+   }
+};
 
-    setNotifications(data);
- }, []);
+const handleSignUp = () => {
+   navigation.navigate('Register');
+};
 
- const handleMarkAllAsRead = () => {
-    setMarkedAsRead(true);
-
-    const updatedNotifications = notifications.map(notification => ({
-      ...notification,
-      isRead: true,
-    }));
-
-    setNotifications(updatedNotifications);
- };
-
- const renderItem = ({ item }) => (
-    <View style={styles.item}>
-      {/* <Image source={require('./assets/notification.png')} style={styles.notificationIcon} /> */}
-      <View style={styles.content}>
-        <Text style={[styles.title, item.isRead && styles.readTitle]}>{item.title}</Text>
-        <Text style={[styles.time, item.isRead && styles.readTime]}>{item.time}</Text>
-      </View>
-    </View>
- );
-
- return (
-    <View style={styles.container}>
-      <FlatList
-        data={notifications}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
+return (
+   <View style={styles.container}>
+      <Text style={styles.title}>AmHealth</Text>
+      <Text style={styles.subtitle}>Email</Text>
+      <TextInput
+      style={styles.input}
+      onChangeText={text => setEmail(text)}
+      value={email}
+      placeholder="Masukkan email anda"
       />
-      <TouchableOpacity style={styles.markAllButton} onPress={handleMarkAllAsRead}>
-        <Text style={styles.markAllText}>Mark all as read</Text>
+      <Text style={styles.subtitle}>Kata Sandi</Text>
+      <TextInput
+      style={styles.input}
+      onChangeText={text => setPassword(text)}
+      value={password}
+      placeholder="Masukkan kata sandi Anda"
+      secureTextEntry
+      />
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <Text style={styles.buttonText}>Masuk</Text>
       </TouchableOpacity>
-    </View>
- );
+      <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
+      <Text style={styles.signUpButtonText}>Belum punya akun?</Text>
+      </TouchableOpacity>
+   </View>
+);
 };
 
 const styles = StyleSheet.create({
- container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: 10,
- },
- item: {
-    backgroundColor: '#f0f0f0',
-    padding: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
- },
- content: {
-    marginLeft: 15,
- },
- title: {
-    fontSize: 16,
-    fontWeight: 'bold',
- },
- time: {
-    fontSize: 14,
-    color: '#666',
- },
- readTitle: {
-    fontWeight: 'normal',
- },
- readTime: {
-    color: '#999',
- },
- notificationIcon: {
-    width: 30,
-    height: 30,
- },
- markAllButton: {
-    alignItems: 'center',
-    backgroundColor: '#007bff',
-    padding: 15,
-    marginTop: 10,
- },
- markAllText: {
-    color: '#fff',
-    fontSize: 16,
- },
+container: {
+   flex: 1,
+   backgroundColor: '#fff',
+   paddingHorizontal: 32,
+   paddingVertical: 128,
+},
+title: {
+   fontSize: 32,
+   color: '#111',
+   marginBottom: 12,
+},
+subtitle: {
+   fontSize: 18,
+   color: '#111',
+   marginBottom: 12,
+},
+input: {
+   backgroundColor: '#eee',
+   paddingHorizontal: 8,
+   paddingVertical: 8,
+   borderRadius: 4,
+   marginBottom: 12,
+},
+button: {
+   backgroundColor: '#342342',
+   paddingHorizontal: 16,
+   paddingVertical: 12,
+   borderRadius: 4,
+   marginBottom: 12,
+},
+buttonText: {
+   fontSize: 18,
+   color: '#fff',
+   textAlign: 'center',
+},
+signUpButton: {
+   borderRadius: 2,
+   borderColor: '#342342',
+   paddingHorizontal: 8,
+   paddingVertical: 6,
+},
+signUpButtonText: {
+   fontSize: 10,
+   color: '#342342',
+   textAlign: 'center',
+},
 });
 
-export default NotificationScreen;
+export default LoginScreen;
